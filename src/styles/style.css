@@ -1,0 +1,96 @@
+/* font definition */
+@font-face {
+  src: url('../assets/fonts/abril.ttf');
+  font-family: 'abril'
+}
+@font-face {
+  src: url('../assets/fonts/poppins.ttf');
+  font-family: 'poppins'
+}
+
+/* swatch */
+:root{
+  --light: #eeeeee;
+}
+
+/* reset */
+body{
+  font-family: 'poppins'
+}
+h1,h2{
+  font-family: 'abril'
+}
+.g-0{
+  margin: 0 -.75rem !important;
+}
+
+/* hero component */
+.hero-con{
+  width: 100%;
+  height: 100vh;
+  background: url('../assets/images/hero-landscape.jpg') no-repeat center top;
+  background-size: cover;
+  position: relative;
+  color: var(--light);
+}
+.hero-overlay{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(90deg, #b10a02 0%, #000000 100%);
+  opacity: .8;
+}
+.hero-text{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 40%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.hero-text h1{
+  font-size: 5rem;
+  animation: widen 2s;
+  letter-spacing: 10px;
+}
+@keyframes widen {
+  0%{
+    letter-spacing: 0px;
+  }
+  70%{
+    letter-spacing: 15px;
+  }
+  100%{
+    letter-spacing: 10px;
+  }
+}
+.btn-swipe-down{
+  position: absolute;
+  z-index: 3;
+  font-size: 32px;
+  color: var(--light);
+  left: 47%;
+  animation: pulseDown 2s infinite;
+  background: transparent;
+  border: none;
+}
+@keyframes pulseDown {
+  0%{
+    bottom: 4rem;
+    opacity: .2;
+  }
+  70%{
+    bottom: 2rem;
+    opacity: 1;
+  }
+  100%{
+    bottom: 4rem;
+    opacity: .2;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero-con{
+    background: url('../assets/images/hero-potrait.jpg') no-repeat center top;
+  }
+}
