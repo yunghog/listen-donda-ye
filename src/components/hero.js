@@ -17,9 +17,11 @@ export default function Hero(){
                 <p  data-aos="fade-down" data-aos-delay="2000">Virtual Listening Party</p>
               </div>
               <div>
+                <a href="#player">
                 <button className="btn-swipe-down">
                   <FaAngleDoubleDown/>
                 </button>
+                </a>
               </div>
               <div className="hero-overlay"></div>
             </div>
