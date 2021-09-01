@@ -105,12 +105,14 @@ h1,h2{
   width: 100%;
   background-color: #ccc;
   padding: 5rem;
+  box-shadow: 0 0 10px #555;
 }
 .player-panel{
-  margin: 2rem;
+  height: 80vh;
+  background-color: #ffffff;
 }
 .player-panel-top{
-  background-color: #0009;
+  background-color: #000;
   padding: 10px;
   text-align: center;
 }
@@ -122,15 +124,60 @@ h1,h2{
   padding: 10%;
   position: relative;
 }
+.playlist{
+  background: linear-gradient(90deg, #b10a0230 0%, #00000010 100%);
+  height: 80vh;
+  color: #000000;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.playlist-header{
+  padding: 30px;
+  background-color: #eeeeeec0;
+  box-shadow: 10px 0 10px #555555a0;
+}
+.playlist-list ul{
+  list-style-type: none;
+  padding: 0;
+}
+.playlist-list ul li{
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 30px;
+  border-bottom: 1px solid #ffffff30;
+  position: relative;
+  font-size: ;
+}
+.playlist-list ul li:hover{
+  background-color: #eeeeee30;
+}
+.playlist-list ul li p{
+  margin: 0;
+}
+.playlist-list ul li span{
+  position: absolute;
+  right: 20px;
+}
+.playlist-list ul li.active{
+  background-color: #eeeeee30;
+}
 @media screen and (max-width: 768px) {
   .player{
     padding: 0px;
   }
   .player-panel{
     margin: 0px;
+    height: initial;
+  }
+  .playlist{
+    height: initial;
   }
   .player-panel-top img{
     width: 100%;
+  }
+  .player-footer{
+    bottom: 0px;
   }
 }
 
@@ -140,5 +187,5 @@ h1,h2{
   opacity: .4;
   font-size: 12px;
   position: absolute;
-  bottom: 0px;
+  bottom: -80px;
 }
