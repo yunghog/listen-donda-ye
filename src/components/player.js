@@ -3,7 +3,6 @@ import {Container, Row, Col} from 'react-bootstrap'
 import cover from '../assets/images/donda-cover-cd.png'
 import PlayerFooter from './player-footer'
 import {FaPlay, FaPause} from 'react-icons/fa'
-import ReactAudioPlayer from 'react-audio-player';
 import Axios from 'axios'
 export default function Player(props){
   const [tracks,setTracks] = useState(0)
@@ -16,10 +15,9 @@ export default function Player(props){
           fetchedData.push({...res.data[key],_id:key})
         }
         setTracks(fetchedData)
-        // let n = fetchedData.length
-        // let x = Math.floor(Math.random() * n)
-        setNowPlaying(fetchedData[0])
-        audioController.current.play()
+        let n = fetchedData.length
+        let x = Math.floor(Math.random() * n)
+        setNowPlaying(fetchedData[x])
       })
     }, [])
   const playThis=(id,e)=>{
@@ -49,13 +47,14 @@ export default function Player(props){
           <Col md={6}>
             <div className="playlist">
               <div className="playlist-header">
-                <p>Donda - 2021</p>
-                <h2>Praise God</h2>
+                <p>Donda Originals - 2021</p>
+                <h2>{nowPlaying.title}</h2>
               </div>
               <audio className="player-controll"
+                  id="audioController"
                   ref={audioController}
                   controls
-                  autoPlay
+                  autoPlay={true}
                   src={nowPlaying.source}
                 />
               <div className="playlist-list">

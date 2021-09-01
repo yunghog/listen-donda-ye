@@ -127,8 +127,8 @@ h1,h2{
 }
 .player-panel-bottom span{
   font-size: 10px;
-  margin: 0;
-  color : #000000c0
+  color: #474
+  222222c0;
 }
 .playlist{
   background: linear-gradient(90deg, #b10a0230 0%, #00000010 100%);
@@ -150,6 +150,16 @@ h1,h2{
   height: 285px;
   overflow-y: scroll;
 }
+.playlist-list ul::-webkit-scrollbar              { 
+  width: 5px;
+ }
+.playlist-list ul::-webkit-scrollbar-track-piece  { 
+  background-color: #22222220;
+ }
+.playlist-list ul::-webkit-scrollbar-thumb        { 
+  background-color: #22222280;
+ }
+
 .playlist-list ul li{
   width: 100%;
   display: inline-flex;
@@ -157,7 +167,6 @@ h1,h2{
   padding: 10px 30px;
   border-bottom: 1px solid #ffffff30;
   position: relative;
-  font-size: ;
 }
 .playlist-list ul li:hover{
   background-color: #eeeeee30;
@@ -173,6 +182,7 @@ h1,h2{
   background-color: #eeeeee30;
 }
 .player-controll{
+  filter: invert(100%);
   position: absolute;
   width: 100%;
   bottom: 0px;
@@ -181,7 +191,7 @@ h1,h2{
 }
 @media screen and (max-width: 768px) {
   .player{
-    padding: 0px;
+    padding: 0;
   }
   .player-panel{
     margin: 0px;
@@ -193,8 +203,14 @@ h1,h2{
   .player-panel-top img{
     width: 100%;
   }
+  .player-panel-bottom{
+    padding-bottom: 40px;
+  }
   .player-footer{
-    bottom: 0px;
+    position: relative;
+  }
+  .player-controll{
+    position: fixed;
   }
 }
 
