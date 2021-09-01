@@ -1,12 +1,31 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import {Container, Row, Col} from 'react-bootstrap'
 import cover from '../assets/images/donda-cover-cd.png'
 import PlayerFooter from './player-footer'
 import {FaPlay, FaPause} from 'react-icons/fa'
 import ReactAudioPlayer from 'react-audio-player';
-
+import Axios from 'axios'
 export default function Player(props){
+  const [tracks,setTracks] = useState(0)
   const [nowPlaying,setNowPlaying] = useState(0)
+  const  audioController = useRef(0)
+  useEffect(() => {
+    Axios.get('https://listen-donda-default-rtdb.asia-southeast1.firebasedatabase.app/tracks.json').then(res=>{
+      let fetchedData = []
+        for(let key in res.data){
+          fetchedData.push({...res.data[key],_id:key})
+        }
+        setTracks(fetchedData)
+        // let n = fetchedData.length
+        // let x = Math.floor(Math.random() * n)
+        setNowPlaying(fetchedData[0])
+        audioController.current.play()
+      })
+    }, [])
+  const playThis=(id,e)=>{
+    let track = tracks.filter(function(x){ return x._id===id})[0]
+    setNowPlaying(track)
+  }
   return(
     <section className="player" id="player">
       <Container>
@@ -17,15 +36,14 @@ export default function Player(props){
                 <img src={cover} alt='donda-artwork'/>
               </div>
               <div className="player-panel-bottom">
-                <h2>Praise god</h2>
-                <h5>Kanye West, Travis Scott, Baby Keem</h5>
-                <ReactAudioPlayer
-                  src="https://firebasestorage.googleapis.com/v0/b/listen-donda.appspot.com/o/leaks%2F11%20New%20Again%20(feat.%20Chris%20Brown).mp3?alt=media&token=6d92289c-8aa0-4d81-aef9-c5cfecd93855"
-                  autoPlay
-                  controls
-                />
-                <PlayerFooter/>
+                <span>Track {nowPlaying.track}</span>
+                <h2>{nowPlaying.title}</h2>
+                <span>Artists</span>
+                <h5>{nowPlaying.artist}</h5>
+                <span>Produced By</span>
+                <h5>{nowPlaying.producer}</h5>
               </div>
+                <PlayerFooter/>
             </div>
           </Col>
           <Col md={6}>
@@ -34,48 +52,23 @@ export default function Player(props){
                 <p>Donda - 2021</p>
                 <h2>Praise God</h2>
               </div>
+              <audio className="player-controll"
+                  ref={audioController}
+                  controls
+                  autoPlay
+                  src={nowPlaying.source}
+                />
               <div className="playlist-list">
                 <ul>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
+                  {tracks && tracks.map(track=>
+                    <li onClick={e=>playThis(track._id, e)} key={track._id}
+                      className={nowPlaying._id===track._id?"active":""}
+                    >
+                    {nowPlaying._id===track._id?<button className="btn play-btn"><FaPause/></button>:<button className="btn play-btn"><FaPlay/></button>}
+                    <p>{track.title}</p>
+                    <span>{track.length}</span>
                   </li>
-                  <li className="active">
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li className="active">
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
-                  <li>
-                    <button className="btn play-btn"><FaPlay/></button>
-                    <p>Praise God</p>
-                    <span>3:40</span>
-                  </li>
+                  )}
                 </ul>
               </div>
             </div>
