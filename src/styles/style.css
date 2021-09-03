@@ -140,7 +140,7 @@ h1,h2{
 .playlist-header{
   padding: 30px;
   box-shadow: 10px 0 10px #555555a0;
-  background: url('../assets/images/player-bg.jpg') center; 
+  background: url('../assets/images/player-bg.jpg') center;
   background-color: #eeeeeec0;
   background-blend-mode: overlay;
 }
@@ -150,13 +150,13 @@ h1,h2{
   height: 285px;
   overflow-y: scroll;
 }
-.playlist-list ul::-webkit-scrollbar              { 
+.playlist-list ul::-webkit-scrollbar              {
   width: 5px;
  }
-.playlist-list ul::-webkit-scrollbar-track-piece  { 
+.playlist-list ul::-webkit-scrollbar-track-piece  {
   background-color: #22222220;
  }
-.playlist-list ul::-webkit-scrollbar-thumb        { 
+.playlist-list ul::-webkit-scrollbar-thumb        {
   background-color: #22222280;
  }
 
@@ -179,7 +179,8 @@ h1,h2{
   right: 20px;
 }
 .playlist-list ul li.active{
-  background-color: #eeeeee30;
+  background-color: #eeeeeec0;
+  font-weight: bolder;
 }
 .player-controll{
   filter: invert(100%);

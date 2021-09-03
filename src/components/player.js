@@ -23,6 +23,7 @@ export default function Player(props){
   const playThis=(id,e)=>{
     let track = tracks.filter(function(x){ return x._id===id})[0]
     setNowPlaying(track)
+    audioController.current.play()
   }
   return(
     <section className="player" id="player">
@@ -56,6 +57,7 @@ export default function Player(props){
                   controls
                   autoPlay={true}
                   src={nowPlaying.source}
+                  loop
                 />
               <div className="playlist-list">
                 <ul>
@@ -63,7 +65,7 @@ export default function Player(props){
                     <li onClick={e=>playThis(track._id, e)} key={track._id}
                       className={nowPlaying._id===track._id?"active":""}
                     >
-                    {nowPlaying._id===track._id?<button className="btn play-btn"><FaPause/></button>:<button className="btn play-btn"><FaPlay/></button>}
+                    {nowPlaying._id===track._id ?<button className="btn play-btn"><FaPause/></button>:<button className="btn play-btn"><FaPlay/></button>}
                     <p>{track.title}</p>
                     <span>{track.length}</span>
                   </li>
