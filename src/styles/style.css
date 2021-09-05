@@ -173,10 +173,18 @@ h1,h2{
 }
 .playlist-list ul li p{
   margin: 0;
+  width: 100%;
+  position: relative;
 }
 .playlist-list ul li span{
   position: absolute;
   right: 20px;
+}
+.playlist-list ul li span.trackno{
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-size: 10px;
 }
 .playlist-list ul li.active{
   background-color: #eeeeeec0;

@@ -66,7 +66,10 @@ export default function Player(props){
                       className={nowPlaying._id===track._id?"active":""}
                     >
                     {nowPlaying._id===track._id ?<button className="btn play-btn"><FaPause/></button>:<button className="btn play-btn"><FaPlay/></button>}
-                    <p>{track.title}</p>
+                    <p>
+                      <span className="trackno">Track {track.track}</span>
+                      {track.title}
+                    </p>
                     <span>{track.length}</span>
                   </li>
                   )}
