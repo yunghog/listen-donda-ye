@@ -147,7 +147,7 @@ h1,h2{
 .playlist-list ul{
   list-style-type: none;
   padding: 0;
-  height: 285px;
+  height: 300px;
   overflow-y: scroll;
 }
 .playlist-list ul::-webkit-scrollbar              {
@@ -208,6 +208,7 @@ h1,h2{
   }
   .playlist{
     height: initial;
+    padding-bottom: 2rem;
   }
   .player-panel-top img{
     width: 100%;

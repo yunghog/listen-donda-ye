@@ -22,8 +22,13 @@ export default function Player(props){
     }, [])
   const playThis=(id,e)=>{
     let track = tracks.filter(function(x){ return x._id===id})[0]
-    setNowPlaying(track)
-    audioController.current.play()
+    if(nowPlaying._id === track._id && !audioController.current.paused){
+      audioController.current.pause()
+    }
+    else{
+      setNowPlaying(track)
+      audioController.current.play()
+    }
   }
   return(
     <section className="player" id="player">
